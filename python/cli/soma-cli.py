@@ -1,0 +1,4 @@
+'''
+Executable SoMA shell
+'''
+
