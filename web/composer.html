@@ -1,0 +1,59 @@
+<!-- Sourced from  -->
+<head>
+<meta charset="utf-8"/>
+<script src="js/jquery.min.js">
+</script>
+
+
+</head>
+<body>
+<form name="presentation" accept-charset=utf-8>
+  <fieldset>
+  
+    colorful presentation
+    <input name="survey" type="radio" value="colorful presentation" />opaque presentation
+    <input name="survey" type="radio" value="opaque presentation" />
+    <br>
+    <label>please leave a brief comment about the presentation
+    <input type="text" name="comment" maxlength="20" minlength="5" required placeholder="5-25 charcters, e.g.; 'colorful'" /></label><br />
+    <input type="submit" />
+    <input type="reset" />
+  </fieldset>
+</form>
+<a></a>
+<script>
+//var data = [],
+var data={}
+a = document.getElementsByTagName("a")[0];
+
+document.forms["presentation"].onchange = function(event) {
+  //var val = {};
+  console.log(event)
+  data[event.target.name] = event.target.value ;
+  //val["value"] = event.target.value;
+  //data.push(val);
+  console.log(data)
+  //event.target.setAttribute("disabled", true);
+}
+
+document.forms["presentation"].onsubmit = function(event) {
+  event.preventDefault();
+  var formData = JSON.stringify(data, null, 2);
+  console.log(data)
+  a.download = "SoMAPost-" + new Date().getTime();
+  // create a text file
+  a.href = "data:text/plain," + encodeURIComponent(formData);
+  // save `formData` locally as file with timestamp appended to file name
+  a.click();
+}
+
+document.forms["presentation"].onreset = function(event) {
+  var elems = this.querySelectorAll("input, select");
+  for (var i = 0; i < elems.length; i++) {
+    elems[i].removeAttribute("disabled")
+  }
+  // empty `data` array
+  data.length = 0;
+}
+</script>
+</body>
