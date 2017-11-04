@@ -35,3 +35,7 @@ def like_page_toggle(driver,pageurl):
 	likebutton.click()
 #driver.close()
 
+def like_all_posts(driver,pageurl):
+	postlikebuttons=driver.find_elements_by_xpath("//a[@data-testid='fb-ufi-likelink']"
+	for button in postlikebuttons:
+		button.click()
