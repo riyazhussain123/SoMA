@@ -15,7 +15,7 @@ def login_to_fb(configfile):
 	firefox_profile.set_preference("browser.privatebrowsing.autostart", True)
 	driver = webdriver.Firefox(firefox_profile=firefox_profile)
 	# or you can use Chrome(executable_path="/usr/bin/chromedriver")
-	driver.get("http://www.facebook.org")
+	driver.get("http://www.facebook.com")
 	assert "Facebook" in driver.title
 	elem = driver.find_element_by_id("email")
 	elem.send_keys(usr)
@@ -31,7 +31,7 @@ def login_to_fb(configfile):
 
 def like_page_toggle(driver,pageurl):
 	driver.get(pageurl)
-	driver.get_elements_by_xpath("//button[@data-testid='page_profile_liked_button_test_id']")
+	driver.find_element_by_xpath("//button[@data-testid='page_profile_liked_button_test_id']")
 	driver.click()
 #driver.close()
 
