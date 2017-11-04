@@ -1,7 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 import ConfigParser
-
+import time
 def setup(configfile):
 	config=ConfigParser.ConfigParser()
 	config.read(configfile)
@@ -35,9 +36,21 @@ def like_page_toggle(driver,pageurl):
 	likebutton.click()
 #driver.close()
 
-def like_all_posts(driver,pageurl):
+def like_all_posts(driver,pageurl,count=10):
 	driver.get(pageurl)
-	postlikebuttons=driver.find_elements_by_xpath("//a[@data-testid='fb-ufi-likelink']")
-	for button in postlikebuttons:
-		button.click()
-		sleep(2)
+	time.sleep(10)
+	driver.execute_script("window.scrollTo(0, document.body.scrollHeight);") 		
+	time.sleep(10)	
+	for i in range (0,count):
+		time.sleep(5)
+		postlikebuttons=driver.find_elements_by_xpath("//a[@data-testid='fb-ufi-likelink']")
+		for button in postlikebuttons:
+			try:
+				button.click()
+				time.sleep(2)
+			except:
+				print "Ouch!"
+			time.sleep(5)
+		driver.execute_script("window.scrollTo(0, document.body.scrollHeight);") 		
+	
+		i+=1	
