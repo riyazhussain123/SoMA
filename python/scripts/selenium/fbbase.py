@@ -31,7 +31,7 @@ def login_to_fb(configfile):
 
 def like_page_toggle(driver,pageurl):
 	driver.get(pageurl)
-	likebutton=driver.find_element_by_xpath("//button[@data-testid='page_profile_liked_button_test_id']")
+	likebutton=driver.find_element_by_xpath("//button[@data-testid='page_profile_like_button_test_id']")
 	likebutton.click()
 #driver.close()
 
