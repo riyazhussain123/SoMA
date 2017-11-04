@@ -29,7 +29,9 @@ def login_to_fb(configfile):
 #elem = driver.find_element_by_css_selector("input[value=\"Publicar\"]")
 #elem.click()
 
-
-
+def like_page_toggle(driver,pageurl):
+	driver.get(pageurl)
+	driver.get_elements_by_xpath("//button[@data-testid='page_profile_liked_button_test_id']")
+	driver.click()
 #driver.close()
 
